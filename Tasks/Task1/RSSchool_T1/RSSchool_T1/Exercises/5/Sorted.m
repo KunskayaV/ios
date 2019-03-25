@@ -26,7 +26,7 @@
             
             if (
                 endIndex == firstIndex + 1
-                || [[NSString stringWithString:array[firstIndex + 1]] intValue] < [[NSString stringWithString:array[firstIndex + 2]] intValue]
+                || [array[firstIndex + 1] intValue] < [array[firstIndex + 2] intValue]
             ) {
                 [self swapElementsIn:array fromPosition:firstIndex toPosition:endIndex];
                 value.detail = [NSString stringWithFormat:@"swap %d %d", firstIndex + 1, endIndex + 1];
@@ -48,8 +48,8 @@
 
     NSUInteger length = array.count;
     for (int i = 0; i < length - 1; i++) {
-        int firstValue = [[NSString stringWithString:array[i]] intValue];
-        int secondValue = [[NSString stringWithString:array[i+1]] intValue];
+        int firstValue = [array[i] intValue];
+        int secondValue = [array[i+1] intValue];
 
         if (firstValue > secondValue) {
             index = i;
@@ -63,7 +63,7 @@
 - (int)findInArray:(NSArray *)array fromPosition:(int)startPosition {
     NSUInteger length = array.count;
     int endIndex = startPosition + 1;
-    int startValue = [[NSString stringWithString:array[startPosition]] intValue];
+    int startValue = [array[startPosition] intValue];
 
     for (int i = startPosition + 1; i < length - 1; i++) {
         endIndex = i;
@@ -98,8 +98,8 @@
     BOOL isArraySorted = YES;
 
     for (int i = 0; i < length - 1; i++) {
-        int firstValue = [[NSString stringWithString:array[i]] intValue];
-        int secondValue = [[NSString stringWithString:array[i+1]] intValue];
+        int firstValue = [array[i] intValue];
+        int secondValue = [array[i+1] intValue];
 
         if (firstValue > secondValue) {
             isArraySorted = NO;
