@@ -12,6 +12,10 @@
     _pangrams = [Pangrams new];
 }
 
+- (void)tearDown {
+    [_pangrams release];
+}
+
 - (void)testStrign1 {
     XCTAssertTrue([self.pangrams pangrams:@"We promptly judged antique ivory buckles for the next prize"]);
 }

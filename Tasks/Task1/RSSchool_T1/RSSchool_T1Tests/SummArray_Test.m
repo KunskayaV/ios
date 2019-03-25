@@ -11,6 +11,10 @@
     _summ = [SummArray new];
 }
 
+- (void)tearDown {
+    [_summ release];
+}
+
 - (void)testSumm1 {
     NSArray *a = @[@(1), @(2), @(3), @(4), @(10), @(11)];
     XCTAssertTrue([@(31) isEqual:[self.summ summArray:a]]);
@@ -25,4 +29,5 @@
     NSArray *a = @[@"1000.0", @"2.0", @"3", @"41", @"10", @"11", @"-900"];
     XCTAssertTrue([@(167) isEqual:[self.summ summArray:a]]);
 }
+
 @end

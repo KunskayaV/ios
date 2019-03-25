@@ -4,7 +4,29 @@
 
 // Complete the pangrams function below.
 - (BOOL)pangrams:(NSString *)string {
-    return NO;
+    NSError *error = nil;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\W|\\d|_" options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    NSString *lowerString = [string lowercaseString];
+
+    NSString *lowerStringWithoutSigns = [regex stringByReplacingMatchesInString:lowerString
+                                               options:0
+                                               range:NSMakeRange(0,[lowerString length])
+                                               withTemplate:@""];
+    NSUInteger length = [lowerStringWithoutSigns length];
+
+    NSMutableSet *set = [NSMutableSet new];
+    for (int i = 0; i < length; i++) {
+        NSString *ch = [lowerStringWithoutSigns substringWithRange:NSMakeRange(i, 1)];
+        [set addObject:ch];
+    }
+
+    NSUInteger count = set.count;
+
+    [set release];
+
+    return count == 26;
 }
 
 @end

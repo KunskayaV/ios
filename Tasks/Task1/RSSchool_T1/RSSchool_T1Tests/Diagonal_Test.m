@@ -11,6 +11,10 @@
     _diagonal = [Diagonal new];
 }
 
+- (void)tearDown {
+    [_diagonal release];
+}
+
 - (void)testDiagonal1 {
     NSArray *array = @[@"6 6 7 -10 9 -3 8 9 -1",
                        @"9 7 -10 6 4 1 6 1 1",
@@ -21,7 +25,10 @@
                        @"-2 -7 -4 8 3 -1 8 2 3",
                        @"-3 4 6 -7 -7 -8 -3 9 -6",
                        @"-2 0 5 4 4 4 -3 3 0"];
-    XCTAssertTrue([@(52) isEqual: [self.diagonal diagonalDifference:array]]);
+    
+    NSNumber *number = [self.diagonal diagonalDifference:array];
+    NSLog(@"----- number: %d", [number intValue]);
+    XCTAssertTrue([@(52) isEqual: number]);
 }
 
 - (void)testDiagonal2 {

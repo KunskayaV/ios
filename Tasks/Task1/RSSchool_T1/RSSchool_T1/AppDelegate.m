@@ -20,4 +20,9 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {}
 - (void)applicationDidBecomeActive:(UIApplication *)application {}
 - (void)applicationWillTerminate:(UIApplication *)application {}
+
+-(void) dealloc {
+    [_window release];
+    [super dealloc];
+}
 @end

@@ -12,6 +12,10 @@
     _encrypt = [Encryption new];
 }
 
+- (void)tearDown {
+    [_encrypt release];
+}
+
 - (void)testNumber1 {
     XCTAssertTrue([@"a" isEqualToString:[self.encrypt encryption:@"a"]]);
 }
