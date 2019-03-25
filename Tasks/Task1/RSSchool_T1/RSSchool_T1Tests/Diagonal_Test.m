@@ -27,7 +27,6 @@
                        @"-2 0 5 4 4 4 -3 3 0"];
     
     NSNumber *number = [self.diagonal diagonalDifference:array];
-    NSLog(@"----- number: %d", [number intValue]);
     XCTAssertTrue([@(52) isEqual: number]);
 }
 
