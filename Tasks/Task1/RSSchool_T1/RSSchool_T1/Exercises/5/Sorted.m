@@ -22,17 +22,17 @@
         if (firstIndex < 0) {
             value.status = YES;
         } else {
-            int endIndex = [self findInArray:array fromPosition:firstIndex];
+            int secondIndex = [self findInArray:array indexFromPosition:firstIndex];
             
             if (
-                endIndex == firstIndex + 1
+                secondIndex == firstIndex + 1
                 || [array[firstIndex + 1] intValue] < [array[firstIndex + 2] intValue]
             ) {
-                [self swapElementsIn:array fromPosition:firstIndex toPosition:endIndex];
-                value.detail = [NSString stringWithFormat:@"swap %d %d", firstIndex + 1, endIndex + 1];
+                [self swapElementsIn:array position:firstIndex withPosition:secondIndex];
+                value.detail = [NSString stringWithFormat:@"swap %d %d", firstIndex + 1, secondIndex + 1];
             } else {
-                [self reverseElementsIn:array fromPosition:firstIndex toPosition:endIndex];
-                value.detail = [NSString stringWithFormat:@"reverse %d %d", firstIndex + 1, endIndex + 1];
+                [self reverseElementsIn:array fromPosition:firstIndex toPosition:secondIndex];
+                value.detail = [NSString stringWithFormat:@"reverse %d %d", firstIndex + 1, secondIndex + 1];
             }
             
             value.status = [self isArrayAscendingSorted:array];
@@ -60,13 +60,13 @@
     return index;
 }
 
-- (int)findInArray:(NSArray *)array fromPosition:(int)startPosition {
+- (int)findInArray:(NSArray *)array indexFromPosition:(int)startPosition {
     NSUInteger length = array.count;
-    int endIndex = startPosition + 1;
+    int index = startPosition + 1;
     int startValue = [array[startPosition] intValue];
 
     for (int i = startPosition + 1; i < length - 1; i++) {
-        endIndex = i;
+        index = i;
         int afterValue = [[NSString stringWithString:array[i+1]] intValue];
 
         if (afterValue > startValue){
@@ -74,10 +74,10 @@
         }
     }
     
-    return endIndex;
+    return index;
 }
 
-- (void)swapElementsIn:(NSMutableArray *)array fromPosition:(int)startIndex toPosition:(int)endIndex {
+- (void)swapElementsIn:(NSMutableArray *)array position:(int)startIndex withPosition:(int)endIndex {
     id obj = array[endIndex];
     array[endIndex] = array[startIndex];
     array[startIndex] = obj;
